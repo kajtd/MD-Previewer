@@ -1,17 +1,21 @@
+<script setup lang="ts">
+import AppNavbar from './components/AppNavbar.vue';
+</script>
+
 <template>
-  <div>
-    <img src="./assets/markdown.svg" class="logo" alt="logo" />
-  </div>
+  <main class="app-wrapper">
+    <AppNavbar />
+  </main>
 </template>
 
 <style scoped lang="scss">
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #e4f808d6);
+.app-wrapper {
+  background-color: #15161a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  width: 100%;
 }
 </style>
