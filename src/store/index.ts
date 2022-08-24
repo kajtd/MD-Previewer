@@ -3,7 +3,8 @@ import { ref } from 'vue';
 
 export const useStore = defineStore('store', () => {
   const sidebarVisible = ref(false);
-  function toggleSidebar() {
+
+  function toggleSidebar(): void {
     sidebarVisible.value = !sidebarVisible.value;
   }
 

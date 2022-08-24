@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import AppNavbar from './components/AppNavbar.vue';
+import AppDashboard from './components/AppDashboard.vue';
 </script>
 
 <template>
   <main class="app-wrapper">
     <AppNavbar />
+    <AppDashboard />
   </main>
 </template>
 
