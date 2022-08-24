@@ -2,14 +2,22 @@
   <div class="dashboard">
     <article class="dashboard__window dashboard__window--left window">
       <header class="window__header">Markdown</header>
-      <div class="window__content">content</div>
+      <div class="window__content">{{ text }}</div>
     </article>
     <article class="dashboard__window dashboard__window--right window">
       <header class="window__header">Preview</header>
-      <div class="window__content">content</div>
+      <div v-html="convertedHtml" class="window__content"></div>
     </article>
   </div>
 </template>
+
+<script setup lang="ts">
+import Showdown from 'showdown';
+
+const converter = new Showdown.Converter();
+const text = '# Hello, markdown!';
+const convertedHtml = converter.makeHtml(text);
+</script>
 
 <style lang="scss" scoped>
 .dashboard {
