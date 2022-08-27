@@ -27,3 +27,9 @@ $font-slab: 'Roboto Slab', serif;
   font-size: 1em;
   line-height: 1.5em;
 }
+
+@mixin slab-text {
+  font-family: $font-slab;
+  font-size: 1em;
+  line-height: 1.5em;
+}
