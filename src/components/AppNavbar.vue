@@ -24,7 +24,7 @@ import HamburgerMenuButton from './HamburgerMenuButton.vue';
 @import './../assets/styles/main.scss';
 
 .header {
-  background-color: #2c2d30;
+  background-color: $light-black;
   width: 100%;
   padding: 1em;
 
