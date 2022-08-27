@@ -1,0 +1,28 @@
+// colors
+$primary: #0070f3;
+$primary-dark: #1967d2;
+$gray-900: #111827;
+$gray-800: #1f2937;
+$gray-700: #374151;
+$gray-600: #4b5563;
+$gray-500: #6b7280;
+$gray-400: #9ca3af;
+$gray-300: #d1d5db;
+$gray-200: #e5e7eb;
+$gray-100: #f3f4f6;
+
+// breakpoints
+$mobile: 640px;
+
+// fonts
+$font-normal: 'Roboto', sans-serif;
+$font-mono: 'Roboto Mono', monospace;
+$font-slab: 'Roboto Slab', serif;
+
+// mixins
+
+@mixin mono-text {
+  font-family: $font-mono;
+  font-size: 14px;
+  line-height: 24px;
+}
