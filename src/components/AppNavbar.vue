@@ -3,14 +3,25 @@
     <nav class="header__nav nav">
       <div class="nav__box nav__box--left">
         <HamburgerMenuButton />
-        <div class="nav__logo logo">
-          <img src="../assets/markdown.svg" class="logo__image" alt="logo" />
-          <span class="logo__text">MDPreviewer</span>
-        </div>
+        <Logo class="nav__logo" />
+        <input
+          v-model.sync="documentTitle"
+          placeholder="Document title"
+          name="title"
+          class="nav__title-input"
+        />
       </div>
       <div class="nav__box nav__box--right">
-        <button class="nav__delete-button button--secondary">Delete changes</button>
-        <button class="nav__save-button button--primary">Save Readme</button>
+        <button
+          class="nav__delete-button button--secondary"
+          :diabled="markdowns.length === 1"
+          @click="deleteDocument"
+        >
+          Delete document
+        </button>
+        <button class="nav__save-button button--primary" @click="saveReadme(documentTitle)">
+          Save changes
+        </button>
       </div>
     </nav>
   </header>
@@ -18,13 +29,19 @@
 
 <script setup lang="ts">
 import HamburgerMenuButton from './HamburgerMenuButton.vue';
+import Logo from './Logo.vue';
+import { useStore } from '../store';
+import { storeToRefs } from 'pinia';
+const store = useStore();
+const { documentTitle, markdowns } = storeToRefs(store);
+const { deleteDocument, saveReadme } = store;
 </script>
 
 <style scoped lang="scss">
 @import './../assets/styles/main.scss';
 
 .header {
-  background-color: $light-black;
+  background-color: $black-light;
   width: 100%;
   padding: 1em;
 
@@ -53,20 +70,21 @@ import HamburgerMenuButton from './HamburgerMenuButton.vue';
       }
     }
 
-    .logo {
+    &__logo {
       margin-left: 2em;
-      display: inline-flex;
-      place-items: center;
-      gap: 0.5em;
+    }
 
-      &__image {
-        height: 3em;
-        filter: drop-shadow(0 0 6px $primary);
-      }
+    &__title-input {
+      width: 200px;
+      outline: none;
+      margin-left: 2em;
+      background: transparent;
+      border: none;
+      padding: 0.8em 0;
+      border-bottom: 2px solid $gray-400;
 
-      &__text {
-        font-size: 1.75em;
-        font-weight: 600;
+      &:focus {
+        border-bottom: 2px solid $gray-200;
       }
     }
   }
