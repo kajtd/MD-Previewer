@@ -12,19 +12,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { watchEffect } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useStore } from '../store';
 import Showdown from 'showdown';
 
+const store = useStore();
+const { editorText, convertedHtml } = storeToRefs(store);
 const converter = new Showdown.Converter();
-const editorText = ref('# Start typing');
-const convertedHtml = ref('');
 
 watchEffect(() => {
   convertedHtml.value = converter.makeHtml(editorText.value);
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import './../assets/styles/variables.scss';
 
 .markdown {
@@ -40,10 +42,10 @@ watchEffect(() => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-right: 5px solid $light-black;
+    border-right: 5px solid $black-light;
 
     &--right {
-      border-left: 5px solid $light-black;
+      border-left: 5px solid $black-light;
       border-right-width: 0;
     }
   }
@@ -80,8 +82,7 @@ watchEffect(() => {
   }
 
   &__preview {
-    @include mono-text;
-    gap: 1.25em;
+    @include slab-text;
 
     h1,
     h2,
@@ -89,7 +90,6 @@ watchEffect(() => {
     h4,
     h5,
     h6 {
-      font-family: $font-slab;
       font-weight: bold;
       color: $gray-100;
     }
