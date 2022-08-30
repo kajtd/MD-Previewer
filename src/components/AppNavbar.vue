@@ -29,8 +29,12 @@
         >
           <img src="./../assets/icons/trash.svg" alt="" class="icon icon--large" />
         </button>
-        <button class="nav__save-button button--primary" @click="saveReadme(documentTitle)">
-          Save changes
+        <button
+          class="nav__save-button save-button button--primary"
+          @click="saveReadme(documentTitle)"
+        >
+          <span class="save-button__text">Save Changes</span>
+          <img src="./../assets/icons/save.svg" alt="" class="save-button__icon icon icon--large" />
         </button>
       </div>
     </nav>
@@ -76,9 +80,6 @@ const { deleteDocument, saveReadme } = store;
 
       &--right {
         padding: 1em;
-        @media (max-width: $mobile) {
-          display: none;
-        }
       }
     }
 
@@ -91,10 +92,19 @@ const { deleteDocument, saveReadme } = store;
       place-items: center;
       width: 70px;
       background: #35393f;
+
+      @media (max-width: $mobile) {
+        width: 50px;
+      }
     }
 
     &__logo {
       margin-left: 80px;
+
+      @media (max-width: $mobile) {
+        display: none;
+        appearance: none;
+      }
     }
 
     &__divider {
@@ -102,11 +112,25 @@ const { deleteDocument, saveReadme } = store;
       height: 72px;
       width: 2px;
       margin: 0 16px 0 12px;
+
+      @media (max-width: $mobile) {
+        display: none;
+        appearance: none;
+      }
     }
 
     &__input-wrapper {
       display: flex;
       gap: 1em;
+
+      @media (max-width: $mobile) {
+        margin-left: 60px;
+
+        .icon {
+          display: none;
+          appearance: none;
+        }
+      }
     }
 
     &__title-label {
@@ -119,7 +143,7 @@ const { deleteDocument, saveReadme } = store;
     }
 
     &__title-input {
-      width: 200px;
+      max-width: 200px;
       outline: none;
       background: transparent;
       border: none;
@@ -136,6 +160,25 @@ const { deleteDocument, saveReadme } = store;
       background-color: transparent;
       border: none;
       margin-right: 0.5em;
+    }
+
+    .save-button {
+      display: grid;
+      place-items: center;
+      height: 40px;
+      padding: 0 10px;
+      &__text {
+        @media (max-width: $mobile) {
+          display: none;
+          appearance: none;
+        }
+      }
+      &__icon {
+        @media (min-width: $mobile) {
+          display: none;
+          appearance: none;
+        }
+      }
     }
   }
 }

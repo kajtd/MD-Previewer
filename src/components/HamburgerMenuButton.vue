@@ -30,6 +30,8 @@ const store = useStore();
 </script>
 
 <style scoped lang="scss">
+@import './../assets/styles/variables.scss';
+
 .hamburger {
   z-index: 40;
   display: inline-flex;
@@ -107,6 +109,18 @@ const store = useStore();
     &--bottom {
       transform: translateY(7px) scaleX(0.88235);
     }
+
+    @media (max-width: $mobile) {
+      left: 6px;
+
+      &--top {
+        transform: translateY(-5px) scaleX(0.88235);
+      }
+
+      &--bottom {
+        transform: translateY(5px) scaleX(0.88235);
+      }
+    }
   }
 
   &__line {
@@ -115,6 +129,10 @@ const store = useStore();
     width: 30px;
     transition: transform 0.2s ease-in-out;
     background-color: white;
+    @media (max-width: $mobile) {
+      height: 2px;
+      width: 20px;
+    }
   }
 }
 </style>
