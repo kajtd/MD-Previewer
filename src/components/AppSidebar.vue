@@ -1,22 +1,25 @@
 <template>
   <transition name="sidebar">
     <aside class="sidebar" v-show="sidebarVisible">
+      <div class="sidebar__divider"></div>
       <Logo class="sidebar__logo" />
+      <h2 class="sidebar__title">My documents</h2>
       <button class="sidebar__add-button button--primary" @click="addNewMarkdown">
         New document
+        <img src="./../assets/icons/plus.svg" alt="" class="icon" />
       </button>
-      <h2 class="sidebar__title">Your documents</h2>
+      <h2 class="sidebar__subtitle">Your documents</h2>
       <ul class="sidebar__list">
         <li v-for="(markdown, index) in markdowns" :key="index" class="sidebar__item">
           <button
             :class="[
-              'sidebar__button button',
-              { 'button--active': currentMarkdownIndex === index },
+              'sidebar__document-button document-button',
+              { 'document-button--active': currentMarkdownIndex === index },
             ]"
             @click="setCurrentMarkdownIndex(index)"
           >
-            <span class="button__title"> {{ markdown.title }} </span>
-            <span class="button__date">{{ markdown.date }}</span>
+            <span class="document-button__title"> {{ markdown.title }} </span>
+            <span class="document-button__date">{{ markdown.date }}</span>
           </button>
         </li>
       </ul>
@@ -45,35 +48,48 @@ const { addNewMarkdown, setCurrentMarkdownIndex } = store;
   background-color: $black-light;
   padding: 100px calc(1em + 7px) 0 calc(1em + 7px);
 
+  &__divider {
+    width: 100%;
+    height: 2px;
+    background-color: $gray-500;
+    margin-bottom: 1em;
+  }
+
   &__title {
-    margin-top: 2em;
+    color: $gray-500;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+
+  &__add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7em;
   }
 
   &__list {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4em;
-    height: 100%;
+    position: relative;
     list-style: none;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 0;
+    padding-right: 12px;
   }
 
   &__item {
     width: 100%;
+    margin-bottom: 0.5em;
   }
 
-  &__logo {
-    margin-bottom: 2em;
-  }
-
-  .button {
+  .document-button {
     font-family: $font-normal;
     width: 100%;
     padding: 1em;
-    border-radius: 0.2em;
     background-color: transparent;
     border: 2px solid $gray-400;
+    border-radius: 0.3em;
     display: flex;
     justify-content: space-between;
     align-items: center;
