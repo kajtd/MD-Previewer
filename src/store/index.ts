@@ -34,6 +34,7 @@ export const useStore = defineStore('store', () => {
     editorText.value = markdowns.value[currentMarkdownIndex.value].text;
     documentTitle.value = markdowns.value[currentMarkdownIndex.value].title;
     localStorage.setItem('currentMarkdownIndex', JSON.stringify(currentMarkdownIndex.value));
+    localStorage.setItem('markdowns', JSON.stringify(markdowns.value));
   });
 
   const toggleSidebar = (): void => {
@@ -47,8 +48,7 @@ export const useStore = defineStore('store', () => {
   const deleteDocument = (): void => {
     if (markdowns.value.length === 1) return;
     markdowns.value.splice(currentMarkdownIndex.value, 1);
-    localStorage.setItem('markdowns', JSON.stringify(markdowns.value));
-    currentMarkdownIndex.value--;
+    currentMarkdownIndex.value > 0 ? currentMarkdownIndex.value-- : currentMarkdownIndex.value++;
   };
 
   const downloadReadme = (markdown: string): void => {
