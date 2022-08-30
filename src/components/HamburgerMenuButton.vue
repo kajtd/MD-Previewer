@@ -92,8 +92,8 @@ const store = useStore();
 
   &__line-wrapper {
     position: absolute;
-    left: 7px;
-    top: 15px;
+    left: 0px;
+    top: 13px;
     transition: transform 0.2s ease-in-out 0.1s;
 
     &--top {

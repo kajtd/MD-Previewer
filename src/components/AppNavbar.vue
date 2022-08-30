@@ -2,22 +2,32 @@
   <header class="header">
     <nav class="header__nav nav">
       <div class="nav__box nav__box--left">
-        <HamburgerMenuButton />
+        <div class="nav__hamburger-wrapper">
+          <HamburgerMenuButton />
+        </div>
         <Logo class="nav__logo" />
-        <input
-          v-model.sync="documentTitle"
-          placeholder="Document title"
-          name="title"
-          class="nav__title-input"
-        />
+        <div class="nav__divider"></div>
+        <div class="nav__input-wrapper">
+          <img src="../assets/icons/file.svg" class="icon" alt="" />
+          <div>
+            <label for="title" class="nav__title-label">Document name</label>
+            <input
+              v-model.sync="documentTitle"
+              placeholder="Document title"
+              name="title"
+              id="title"
+              class="nav__title-input"
+            />
+          </div>
+        </div>
       </div>
       <div class="nav__box nav__box--right">
         <button
-          class="nav__delete-button button--secondary"
+          class="nav__delete-button"
           :diabled="markdowns.length === 1"
           @click="deleteDocument"
         >
-          Delete document
+          <img src="./../assets/icons/trash.svg" alt="" class="icon icon--large" />
         </button>
         <button class="nav__save-button button--primary" @click="saveReadme(documentTitle)">
           Save changes
@@ -43,12 +53,13 @@ const { deleteDocument, saveReadme } = store;
 .header {
   background-color: $black-light;
   width: 100%;
-  padding: 1em;
 
   .nav {
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 
     &__box {
       display: flex;
@@ -64,28 +75,67 @@ const { deleteDocument, saveReadme } = store;
       }
 
       &--right {
+        padding: 1em;
         @media (max-width: $mobile) {
           display: none;
         }
       }
     }
 
+    &__hamburger-wrapper {
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 70px;
+      background: #35393f;
+    }
+
     &__logo {
-      margin-left: 2em;
+      margin-left: 80px;
+    }
+
+    &__divider {
+      background-color: #69635a;
+      height: 72px;
+      width: 2px;
+      margin: 0 16px 0 12px;
+    }
+
+    &__input-wrapper {
+      display: flex;
+      gap: 1em;
+    }
+
+    &__title-label {
+      color: #7c8187;
+      font-size: 13px;
+      font-weight: 300;
+      display: block;
+      position: relative;
+      top: 10px;
     }
 
     &__title-input {
       width: 200px;
       outline: none;
-      margin-left: 2em;
       background: transparent;
       border: none;
       padding: 0.8em 0;
-      border-bottom: 2px solid $gray-400;
+      border-bottom: 2px solid $gray-600;
+      font-weight: 600;
 
       &:focus {
-        border-bottom: 2px solid $gray-200;
+        border-color: $gray-100;
       }
+    }
+
+    &__delete-button {
+      background-color: transparent;
+      border: none;
+      margin-right: 0.5em;
     }
   }
 }

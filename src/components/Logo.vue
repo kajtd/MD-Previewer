@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
-    <img src="../assets/markdown.svg" class="logo__image" alt="logo" />
-    <span class="logo__text">MDPreviewer</span>
+    <img src="../assets/icons/markdown.svg" class="logo__image" alt="logo" />
+    <span class="logo__text">MD-Previewer</span>
   </div>
 </template>
 
@@ -19,8 +19,11 @@
   }
 
   &__text {
-    font-size: 1.75em;
+    margin-left: 4px;
+    font-size: 1.2em;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 }
 </style>
