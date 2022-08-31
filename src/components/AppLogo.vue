@@ -15,7 +15,7 @@
 
   &__image {
     height: 3em;
-    filter: drop-shadow(0 0 6px $primary);
+    filter: brightness(0) invert(1) drop-shadow(0 0 6px $primary);
   }
 
   &__text {
