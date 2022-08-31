@@ -77,6 +77,10 @@ const { deleteDocument, saveReadme } = store;
 
       &--right {
         padding: 1em;
+
+        @media (max-width: $mobile) {
+          padding: 1em 0.2em;
+        }
       }
     }
 
@@ -119,7 +123,7 @@ const { deleteDocument, saveReadme } = store;
       gap: 1em;
 
       @media (max-width: $mobile) {
-        margin-left: 70px;
+        margin-left: 60px;
 
         .icon {
           width: 16px;
@@ -151,6 +155,10 @@ const { deleteDocument, saveReadme } = store;
 
       &:focus {
         border-color: $gray-100;
+      }
+
+      @media (max-width: $mobile) {
+        max-width: 150px;
       }
     }
 
