@@ -20,6 +20,9 @@ $font-normal: 'Roboto', sans-serif;
 $font-mono: 'Roboto Mono', monospace;
 $font-slab: 'Roboto Slab', serif;
 
+// margins/paddings
+$extra-em: calc(1em + 7px);
+
 // mixins
 
 @mixin mono-text {

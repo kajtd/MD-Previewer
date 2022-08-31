@@ -46,7 +46,7 @@ const { addNewMarkdown, setCurrentMarkdownIndex } = store;
   height: 100%;
   width: 300px;
   background-color: $black-light;
-  padding: 100px calc(1em + 7px) 0 calc(1em + 7px);
+  padding: 100px $extra-em 0 $extra-em;
 
   &__divider {
     width: 100%;
