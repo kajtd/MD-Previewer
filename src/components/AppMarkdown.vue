@@ -117,7 +117,7 @@ const togglePreview = (): void => {
     width: 100%;
     height: 60px;
     margin-bottom: auto;
-    padding: 0.7em calc(1em + 7px);
+    padding: 0.7em $extra-em;
     letter-spacing: 0.1em;
     font-size: 1.25em;
     font-weight: 500;
@@ -136,7 +136,7 @@ const togglePreview = (): void => {
     outline: none;
     border: none;
     resize: none;
-    padding: calc(1em + 7px);
+    padding: $extra-em;
     background-color: transparent;
     overflow-y: auto;
   }

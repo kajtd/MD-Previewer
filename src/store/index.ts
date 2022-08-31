@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import { ref, watch } from 'vue';
-import { saveAs } from 'file-saver';
 
 interface Markdown {
   title: string;
@@ -12,20 +11,16 @@ export const useStore = defineStore('store', () => {
   const sidebarVisible = ref(false);
   const convertedHtml = ref('');
   const markdowns = ref<Markdown[]>(
-    localStorage.getItem('markdowns') !== null
-      ? JSON.parse(localStorage.getItem('markdowns') as string)
-      : [
-          {
-            title: 'first.md',
-            text: '# Start typing',
-            date: new Date().toLocaleDateString(),
-          },
-        ]
+    JSON.parse(localStorage.getItem('markdowns') as string) || [
+      {
+        title: 'first.md',
+        text: '# Start typing',
+        date: new Date().toLocaleDateString(),
+      },
+    ]
   );
   const currentMarkdownIndex = ref(
-    localStorage.getItem('currentMarkdownIndex') !== null
-      ? JSON.parse(localStorage.getItem('currentMarkdownIndex') as string)
-      : 0
+    JSON.parse(localStorage.getItem('currentMarkdownIndex') as string) || 0
   );
   const editorText = ref(markdowns.value[currentMarkdownIndex.value].text);
   const documentTitle = ref(markdowns.value[currentMarkdownIndex.value].title);
@@ -49,11 +44,6 @@ export const useStore = defineStore('store', () => {
     if (markdowns.value.length === 1) return;
     markdowns.value.splice(currentMarkdownIndex.value, 1);
     currentMarkdownIndex.value > 0 ? currentMarkdownIndex.value-- : currentMarkdownIndex.value++;
-  };
-
-  const downloadReadme = (markdown: string): void => {
-    const blob = new Blob([markdown], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, 'README.md');
   };
 
   const saveReadme = (title = ''): void => {
@@ -85,7 +75,6 @@ export const useStore = defineStore('store', () => {
     toggleSidebar,
     deleteDocument,
     saveReadme,
-    downloadReadme,
     addNewMarkdown,
   };
 });

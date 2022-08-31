@@ -22,11 +22,7 @@
         </div>
       </div>
       <div class="nav__box nav__box--right">
-        <button
-          class="nav__delete-button"
-          :diabled="markdowns.length === 1"
-          @click="deleteDocument"
-        >
+        <button class="nav__delete-button" @click="deleteDocument">
           <img src="./../assets/icons/trash.svg" alt="" class="icon icon--hovered icon--large" />
         </button>
         <button
@@ -47,7 +43,7 @@ import AppLogo from './AppLogo.vue';
 import { useStore } from '../store';
 import { storeToRefs } from 'pinia';
 const store = useStore();
-const { documentTitle, markdowns } = storeToRefs(store);
+const { documentTitle } = storeToRefs(store);
 const { deleteDocument, saveReadme } = store;
 </script>
 
@@ -107,7 +103,7 @@ const { deleteDocument, saveReadme } = store;
     }
 
     &__divider {
-      background-color: #69635a;
+      background-color: $gray-500;
       height: 60px;
       width: 2px;
       margin: 0 16px 0 12px;
