@@ -7,7 +7,7 @@
     📄
   </a>
 
-<a href="https://md-previewer.netlify.app/">
+<a href="https://md-preview-editor.netlify.app/">
   <h3 align="center">MD-Previewer</h3>
 </a>
   <p align="center">
