@@ -2,7 +2,7 @@
   <transition name="sidebar">
     <aside class="sidebar" v-show="sidebarVisible">
       <div class="sidebar__divider"></div>
-      <Logo class="sidebar__logo" />
+      <AppLogo class="sidebar__logo" />
       <h2 class="sidebar__title">My documents</h2>
       <button class="sidebar__add-button button--primary" @click="addNewMarkdown">
         New document
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import Logo from './Logo.vue';
+import AppLogo from './AppLogo.vue';
 import { useStore } from '../store';
 import { storeToRefs } from 'pinia';
 const store = useStore();

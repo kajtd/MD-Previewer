@@ -5,7 +5,7 @@
         <div class="nav__hamburger-wrapper">
           <HamburgerMenuButton />
         </div>
-        <Logo class="nav__logo" />
+        <AppLogo class="nav__logo" />
         <div class="nav__divider"></div>
         <div class="nav__input-wrapper">
           <img src="../assets/icons/file.svg" class="icon" alt="" />
@@ -27,7 +27,7 @@
           :diabled="markdowns.length === 1"
           @click="deleteDocument"
         >
-          <img src="./../assets/icons/trash.svg" alt="" class="icon icon--large" />
+          <img src="./../assets/icons/trash.svg" alt="" class="icon icon--hovered icon--large" />
         </button>
         <button
           class="nav__save-button save-button button--primary"
@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import HamburgerMenuButton from './HamburgerMenuButton.vue';
-import Logo from './Logo.vue';
+import AppLogo from './AppLogo.vue';
 import { useStore } from '../store';
 import { storeToRefs } from 'pinia';
 const store = useStore();
@@ -103,19 +103,17 @@ const { deleteDocument, saveReadme } = store;
 
       @media (max-width: $mobile) {
         display: none;
-        appearance: none;
       }
     }
 
     &__divider {
       background-color: #69635a;
-      height: 72px;
+      height: 60px;
       width: 2px;
       margin: 0 16px 0 12px;
 
       @media (max-width: $mobile) {
         display: none;
-        appearance: none;
       }
     }
 
@@ -124,11 +122,10 @@ const { deleteDocument, saveReadme } = store;
       gap: 1em;
 
       @media (max-width: $mobile) {
-        margin-left: 60px;
+        margin-left: 70px;
 
         .icon {
-          display: none;
-          appearance: none;
+          width: 16px;
         }
       }
     }
@@ -140,6 +137,10 @@ const { deleteDocument, saveReadme } = store;
       display: block;
       position: relative;
       top: 10px;
+
+      @media (max-width: $mobile) {
+        display: none;
+      }
     }
 
     &__title-input {
@@ -170,13 +171,11 @@ const { deleteDocument, saveReadme } = store;
       &__text {
         @media (max-width: $mobile) {
           display: none;
-          appearance: none;
         }
       }
       &__icon {
         @media (min-width: $mobile) {
           display: none;
-          appearance: none;
         }
       }
     }
