@@ -1,5 +1,6 @@
 <template>
   <button
+    aria-label="toggle preview"
     :class="['preview-button', { 'hide-on-desktop': hideOnDesktop && !previewInvisible }]"
     @click="$emit('togglePreview')"
   >
