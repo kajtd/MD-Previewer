@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "file-saver": "^2.0.5",
     "pinia": "^2.0.20",
     "showdown": "^2.1.0",
     "typescript": "^4.7.4",
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.5",
     "@types/showdown": "^2.0.0",
     "@vitejs/plugin-vue": "^3.0.3",
     "cz-conventional-changelog": "^3.3.0",

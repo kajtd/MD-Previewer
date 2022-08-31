@@ -92,6 +92,24 @@ a {
   }
 }
 
+.icon {
+  width: 14px;
+  filter: brightness(0) invert(1);
+  transition: box-shadow 0.2s ease-in, border-radius 0.2s ease-in;
+
+  &--large {
+    width: 20px;
+  }
+
+  &--hovered {
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 0 12px rgba(0, 0, 0, 0.05);
+      border-radius: 50%;
+    }
+  }
+}
+
 #app {
   margin: 0 auto;
   width: 100%;

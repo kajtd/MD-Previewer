@@ -2,15 +2,40 @@
   <header class="header">
     <nav class="header__nav nav">
       <div class="nav__box nav__box--left">
-        <HamburgerMenuButton />
-        <div class="nav__logo logo">
-          <img src="../assets/markdown.svg" class="logo__image" alt="logo" />
-          <span class="logo__text">MDPreviewer</span>
+        <div class="nav__hamburger-wrapper">
+          <HamburgerMenuButton />
+        </div>
+        <AppLogo class="nav__logo" />
+        <div class="nav__divider"></div>
+        <div class="nav__input-wrapper">
+          <img src="../assets/icons/file.svg" class="icon" alt="" />
+          <div>
+            <label for="title" class="nav__title-label">Document name</label>
+            <input
+              v-model.sync="documentTitle"
+              placeholder="Document title"
+              name="title"
+              id="title"
+              class="nav__title-input"
+            />
+          </div>
         </div>
       </div>
       <div class="nav__box nav__box--right">
-        <button class="nav__delete-button button--secondary">Delete changes</button>
-        <button class="nav__save-button button--primary">Save Readme</button>
+        <button
+          class="nav__delete-button"
+          :diabled="markdowns.length === 1"
+          @click="deleteDocument"
+        >
+          <img src="./../assets/icons/trash.svg" alt="" class="icon icon--hovered icon--large" />
+        </button>
+        <button
+          class="nav__save-button save-button button--primary"
+          @click="saveReadme(documentTitle)"
+        >
+          <span class="save-button__text">Save Changes</span>
+          <img src="./../assets/icons/save.svg" alt="" class="save-button__icon icon icon--large" />
+        </button>
       </div>
     </nav>
   </header>
@@ -18,20 +43,27 @@
 
 <script setup lang="ts">
 import HamburgerMenuButton from './HamburgerMenuButton.vue';
+import AppLogo from './AppLogo.vue';
+import { useStore } from '../store';
+import { storeToRefs } from 'pinia';
+const store = useStore();
+const { documentTitle, markdowns } = storeToRefs(store);
+const { deleteDocument, saveReadme } = store;
 </script>
 
 <style scoped lang="scss">
 @import './../assets/styles/main.scss';
 
 .header {
-  background-color: $light-black;
+  background-color: $black-light;
   width: 100%;
-  padding: 1em;
 
   .nav {
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 
     &__box {
       display: flex;
@@ -47,26 +79,104 @@ import HamburgerMenuButton from './HamburgerMenuButton.vue';
       }
 
       &--right {
-        @media (max-width: $mobile) {
-          display: none;
+        padding: 1em;
+      }
+    }
+
+    &__hamburger-wrapper {
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 70px;
+      background: #35393f;
+
+      @media (max-width: $mobile) {
+        width: 50px;
+      }
+    }
+
+    &__logo {
+      margin-left: 80px;
+
+      @media (max-width: $mobile) {
+        display: none;
+      }
+    }
+
+    &__divider {
+      background-color: #69635a;
+      height: 60px;
+      width: 2px;
+      margin: 0 16px 0 12px;
+
+      @media (max-width: $mobile) {
+        display: none;
+      }
+    }
+
+    &__input-wrapper {
+      display: flex;
+      gap: 1em;
+
+      @media (max-width: $mobile) {
+        margin-left: 70px;
+
+        .icon {
+          width: 16px;
         }
       }
     }
 
-    .logo {
-      margin-left: 2em;
-      display: inline-flex;
-      place-items: center;
-      gap: 0.5em;
+    &__title-label {
+      color: #7c8187;
+      font-size: 13px;
+      font-weight: 300;
+      display: block;
+      position: relative;
+      top: 10px;
 
-      &__image {
-        height: 3em;
-        filter: drop-shadow(0 0 6px $primary);
+      @media (max-width: $mobile) {
+        display: none;
       }
+    }
 
+    &__title-input {
+      max-width: 200px;
+      outline: none;
+      background: transparent;
+      border: none;
+      padding: 0.8em 0;
+      border-bottom: 2px solid $gray-600;
+      font-weight: 600;
+
+      &:focus {
+        border-color: $gray-100;
+      }
+    }
+
+    &__delete-button {
+      background-color: transparent;
+      border: none;
+      margin-right: 0.5em;
+    }
+
+    .save-button {
+      display: grid;
+      place-items: center;
+      height: 40px;
+      padding: 0 10px;
       &__text {
-        font-size: 1.75em;
-        font-weight: 600;
+        @media (max-width: $mobile) {
+          display: none;
+        }
+      }
+      &__icon {
+        @media (min-width: $mobile) {
+          display: none;
+        }
       }
     }
   }
