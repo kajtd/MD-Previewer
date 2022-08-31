@@ -22,10 +22,11 @@
         </div>
       </div>
       <div class="nav__box nav__box--right">
-        <button class="nav__delete-button" @click="deleteDocument">
+        <button aria-label="delete document" class="nav__delete-button" @click="deleteDocument">
           <img src="./../assets/icons/trash.svg" alt="" class="icon icon--hovered icon--large" />
         </button>
         <button
+          aria-label="save readme"
           class="nav__save-button save-button button--primary"
           @click="saveReadme(documentTitle)"
         >
