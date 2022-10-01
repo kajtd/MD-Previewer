@@ -10,7 +10,9 @@
         <div class="nav__input-wrapper">
           <img src="../assets/icons/file.svg" class="icon" alt="" />
           <div>
-            <label for="title" class="nav__title-label">Document name</label>
+            <label for="title" class="nav__title-label">
+              Document name
+            </label>
             <input
               v-model.sync="documentTitle"
               placeholder="Document title"
@@ -22,8 +24,16 @@
         </div>
       </div>
       <div class="nav__box nav__box--right">
-        <button aria-label="delete document" class="nav__delete-button" @click="deleteDocument">
-          <img src="./../assets/icons/trash.svg" alt="" class="icon icon--hovered icon--large" />
+        <button
+          aria-label="delete document"
+          class="nav__delete-button"
+          @click="deleteDocument"
+        >
+          <img
+            src="./../assets/icons/trash.svg"
+            alt=""
+            class="icon icon--hovered icon--large"
+          />
         </button>
         <button
           aria-label="save readme"
@@ -31,7 +41,11 @@
           @click="saveReadme(documentTitle)"
         >
           <span class="save-button__text">Save Changes</span>
-          <img src="./../assets/icons/save.svg" alt="" class="save-button__icon icon icon--large" />
+          <img
+            src="./../assets/icons/save.svg"
+            alt=""
+            class="save-button__icon icon icon--large"
+          />
         </button>
       </div>
     </nav>
@@ -148,6 +162,7 @@ const { deleteDocument, saveReadme } = store;
       max-width: 200px;
       outline: none;
       background: transparent;
+      color: white;
       border: none;
       padding: 0.8em 0;
       border-bottom: 2px solid $gray-600;
@@ -155,6 +170,10 @@ const { deleteDocument, saveReadme } = store;
 
       &:focus {
         border-color: $gray-100;
+      }
+
+      &::placeholder {
+        color: $gray-200;
       }
 
       @media (max-width: $mobile) {
