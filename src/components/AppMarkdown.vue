@@ -138,6 +138,7 @@ const togglePreview = (): void => {
     resize: none;
     padding: $extra-em;
     background-color: transparent;
+    overflow-y: auto;
   }
 
   &__editor {
