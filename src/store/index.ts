@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, watch } from 'vue';
+import { initialEditorText } from './../utils/constants';
 
 interface Markdown {
   title: string;
@@ -14,22 +15,36 @@ export const useStore = defineStore('store', () => {
     JSON.parse(localStorage.getItem('markdowns') as string) || [
       {
         title: 'first.md',
-        text: '# Start typing',
+        text: initialEditorText,
         date: new Date().toLocaleDateString(),
       },
     ]
   );
   const currentMarkdownIndex = ref(
-    JSON.parse(localStorage.getItem('currentMarkdownIndex') as string) || 0
+    JSON.parse(
+      localStorage.getItem('currentMarkdownIndex') as string
+    ) || 0
   );
-  const editorText = ref(markdowns.value[currentMarkdownIndex.value].text);
-  const documentTitle = ref(markdowns.value[currentMarkdownIndex.value].title);
+  const editorText = ref(
+    markdowns.value[currentMarkdownIndex.value].text
+  );
+  const documentTitle = ref(
+    markdowns.value[currentMarkdownIndex.value].title
+  );
 
   watch(currentMarkdownIndex, () => {
-    editorText.value = markdowns.value[currentMarkdownIndex.value].text;
-    documentTitle.value = markdowns.value[currentMarkdownIndex.value].title;
-    localStorage.setItem('currentMarkdownIndex', JSON.stringify(currentMarkdownIndex.value));
-    localStorage.setItem('markdowns', JSON.stringify(markdowns.value));
+    editorText.value =
+      markdowns.value[currentMarkdownIndex.value].text;
+    documentTitle.value =
+      markdowns.value[currentMarkdownIndex.value].title;
+    localStorage.setItem(
+      'currentMarkdownIndex',
+      JSON.stringify(currentMarkdownIndex.value)
+    );
+    localStorage.setItem(
+      'markdowns',
+      JSON.stringify(markdowns.value)
+    );
   });
 
   const toggleSidebar = (): void => {
@@ -43,7 +58,9 @@ export const useStore = defineStore('store', () => {
   const deleteDocument = (): void => {
     if (markdowns.value.length === 1) return;
     markdowns.value.splice(currentMarkdownIndex.value, 1);
-    currentMarkdownIndex.value > 0 ? currentMarkdownIndex.value-- : currentMarkdownIndex.value++;
+    currentMarkdownIndex.value > 0
+      ? currentMarkdownIndex.value--
+      : currentMarkdownIndex.value++;
   };
 
   const saveReadme = (title = ''): void => {
@@ -52,7 +69,10 @@ export const useStore = defineStore('store', () => {
       text: editorText.value,
       date: new Date().toLocaleDateString(),
     };
-    localStorage.setItem('markdowns', JSON.stringify(markdowns.value));
+    localStorage.setItem(
+      'markdowns',
+      JSON.stringify(markdowns.value)
+    );
   };
 
   const addNewMarkdown = (): void => {
