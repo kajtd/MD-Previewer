@@ -4,22 +4,36 @@
       <div class="sidebar__divider"></div>
       <AppLogo class="sidebar__logo" />
       <h2 class="sidebar__title">My documents</h2>
-      <button class="sidebar__add-button button--primary" @click="addNewMarkdown">
+      <button
+        class="sidebar__add-button button--primary"
+        @click="addNewMarkdown"
+      >
         New document
         <img src="./../assets/icons/plus.svg" alt="" class="icon" />
       </button>
       <h2 class="sidebar__subtitle">Your documents</h2>
       <ul class="sidebar__list">
-        <li v-for="(markdown, index) in markdowns" :key="index" class="sidebar__item">
+        <li
+          v-for="(markdown, index) in markdowns"
+          :key="index"
+          class="sidebar__item"
+        >
           <button
             :class="[
               'sidebar__document-button document-button',
-              { 'document-button--active': currentMarkdownIndex === index },
+              {
+                'document-button--active':
+                  currentMarkdownIndex === index,
+              },
             ]"
             @click="setCurrentMarkdownIndex(index)"
           >
-            <span class="document-button__title"> {{ markdown.title }} </span>
-            <span class="document-button__date">{{ markdown.date }}</span>
+            <span class="document-button__title">
+              {{ markdown.title }}
+            </span>
+            <span class="document-button__date">
+              {{ markdown.date }}
+            </span>
           </button>
         </li>
       </ul>
@@ -32,7 +46,8 @@ import AppLogo from './AppLogo.vue';
 import { useStore } from '../store';
 import { storeToRefs } from 'pinia';
 const store = useStore();
-const { sidebarVisible, markdowns, currentMarkdownIndex } = storeToRefs(store);
+const { sidebarVisible, markdowns, currentMarkdownIndex } =
+  storeToRefs(store);
 const { addNewMarkdown, setCurrentMarkdownIndex } = store;
 </script>
 
@@ -88,6 +103,7 @@ const { addNewMarkdown, setCurrentMarkdownIndex } = store;
     width: 100%;
     padding: 1em;
     background-color: transparent;
+    color: white;
     border: 2px solid $gray-400;
     border-radius: 0.3em;
     display: flex;
